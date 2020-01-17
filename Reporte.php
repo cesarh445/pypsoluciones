@@ -122,7 +122,8 @@
 						<div class="form-group col-sm-6">
 							<label>Fotografía de la Condición Insegura:</label>
 							<br>
-							<input type="file" class="form-control-file border" name="file">
+							<input type="file" class="form-control-file border" name="file" id="img_before">
+							<img src="" height="200" alt="Image preview...">
 						</div>
 					</div>
 					
@@ -137,18 +138,95 @@
 						<div class="form-group col-sm-6">
 							<label>Fotografía de la Condición Insegura Corregida</label>
 							<br>
-							<input type="file" class="form-control-file border" name="file">
+							<input type="file" class="form-control-file border" name="file" id="img_after">
+							<img src="" height="200" alt="Image preview..."> 
 						</div>
 					</div>
 					
 					<div class="form-row">
-					
+						<div class="col-sm-6">
+							<label>¿La Condición Insegura fue Resuelta?</label>
+						</div>
+						<div class="col-sm-3">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input">Si
+							</label>
+							
+						</div>
+						<div class="col-sm-3">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input">No
+							</label>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm-6">
+							<label>¿Requiere Inversión?</label>
+						</div>
+						<div class="col-sm-3">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input">Si
+							</label>
+							
+						</div>
+						<div class="col-sm-3">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input">No
+							</label>
+						</div>
+						<p>Nota : Para este caso el supervisor deberá subir el tema al área de seguridad
+						</div>
+						
+					</div>
+					<div class="container">
+						<div class="form-row">
+							<div class="col-sm-6">
+								<textarea class="form-control" rows="5" ></textarea>
+								<center><label>Vo.Bo. Supervisor</label></center>
+							</div>
+							<div class="col-sm-6">
+								<textarea class="form-control" rows="5" ></textarea>
+								<center><label>Vo.Bo. Seguridad</label></center>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-6">
+								<label>V-0</label>
+							</div>
+							<div class="col-sm-6">
+								<label id="num_formato">MEX-DG-SEG-F-018</label>
+							</div>
+						</div>
 					</div>
 					
-				</div>
-				
-			</body>
-			<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-		</html>																																																															
+				</body>
+				<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+				<script>
+					$(document).ready(iniciar)
+					function iniciar(){
+						$("#img_before").change(previewFile);
+						$("#img_after").change(previewFile);
+						
+					}
+					function previewFile() {
+						var preview = document.querySelector('img');
+						var file    = document.querySelector('input[type=file]').files[0];
+						var reader  = new FileReader();
+						
+						reader.onloadend = function () {
+							preview.src = reader.result;
+						}
+						
+						if (file) {
+							reader.readAsDataURL(file);
+							} else {
+							preview.src = "";
+						}
+					}
+					
+				</script>
+			</html>																																																																																																	
