@@ -32,7 +32,7 @@
 		</div>
 		<div class="container">
 			<form class="form-group">
-			    <div class="form-group">
+				<div class="form-group">
 					<label id="date">Fecha: <label>
 						<input type="date" class="form-control">
 					</div>
@@ -41,15 +41,17 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">Encontrada por</span>
 						</div>
-						<input type="text" class="form-control">
+						<input type="text" id="encontrada_por" name="encontrada_por" class="form-control" value="SEGURIDAD DE SCHINDLER">
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<div class="input-group mb-9">
 								<div class="input-group-prepend">
-									<span class="input-group-text">Area</span>
+									<span class="input-group-text">Area: </span>
 								</div>
-								<input type="text" class="form-control">
+								<select class="form-control">
+									<option>SEGURIDAD</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group col-md-6">
@@ -64,7 +66,17 @@
 					<div class="form-group">
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Sucursal</span>
+								<span class="input-group-text">Sucursal:</span>
+							</div>
+							<select class="form-control">
+								<option>HERIBERTO FRIAS 1307</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Dirección:</span>
 							</div>
 							<input type="text" class="form-control">
 						</div>
@@ -72,15 +84,7 @@
 					<div class="form-group">
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text">Dirección</span>
-							</div>
-							<input type="text" class="form-control">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">Instalación</span>
+								<span class="input-group-text">Instalación:</span>
 							</div>
 							<input type="text" class="form-control">
 						</div>
@@ -122,7 +126,7 @@
 						<div class="form-group col-sm-6">
 							<label>Fotografía de la Condición Insegura:</label>
 							<br>
-							<input type="file" class="form-control-file border" name="file" id="img_before">
+							<input type="file" class="d-print-none form-control-file border" name="file" id="img_before">
 							<img src="" height="200" alt="Image preview...">
 						</div>
 					</div>
@@ -138,7 +142,7 @@
 						<div class="form-group col-sm-6">
 							<label>Fotografía de la Condición Insegura Corregida</label>
 							<br>
-							<input type="file" class="form-control-file border" name="file" id="img_after">
+							<input type="file" class="d-print-none form-control-file border" name="file" id="img_after" >
 							<img src="" height="200" alt="Image preview..."> 
 						</div>
 					</div>
@@ -149,13 +153,13 @@
 						</div>
 						<div class="col-sm-3">
 							<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">Si
+								<input type="radio" name="resuelto" class="form-check-input">Si
 							</label>
 							
 						</div>
 						<div class="col-sm-3">
 							<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">No
+								<input type="radio" name="resuelto" class="form-check-input">No
 							</label>
 						</div>
 					</div>
@@ -165,13 +169,13 @@
 						</div>
 						<div class="col-sm-3">
 							<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">Si
+								<input type="radio" name="inversion" class="form-check-input">Si
 							</label>
 							
 						</div>
 						<div class="col-sm-3">
 							<label class="form-check-label">
-								<input type="checkbox" class="form-check-input">No
+								<input type="radio" name="inversion" class="form-check-input">No
 							</label>
 						</div>
 						<p>Nota : Para este caso el supervisor deberá subir el tema al área de seguridad
@@ -201,6 +205,18 @@
 						</div>
 					</div>
 					
+					<div class="row text-center">
+						<div class="col-6">
+							<button class="btn btn-info">
+								Imprimir
+							</button>
+						</div>
+						<div class="col-6">
+							<button class="btn btn-success">
+								Guardar
+							</button>
+						</div>
+					</div>
 				</body>
 				<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -208,25 +224,25 @@
 				<script>
 					$(document).ready(iniciar)
 					function iniciar(){
-						$("#img_before").change(previewFile);
-						$("#img_after").change(previewFile);
-						
+					$("#img_before").change(previewFile);
+					$("#img_after").change(previewFile);
+					
 					}
 					function previewFile() {
-						var preview = document.querySelector('img');
-						var file    = document.querySelector('input[type=file]').files[0];
-						var reader  = new FileReader();
-						
-						reader.onloadend = function () {
-							preview.src = reader.result;
-						}
-						
-						if (file) {
-							reader.readAsDataURL(file);
-							} else {
-							preview.src = "";
-						}
+					var preview = document.querySelector('img');
+					var file    = document.querySelector('input[type=file]').files[0];
+					var reader  = new FileReader();
+					
+					reader.onloadend = function () {
+					preview.src = reader.result;
+					}
+					
+					if (file) {
+					reader.readAsDataURL(file);
+					} else {
+					preview.src = "";
+					}
 					}
 					
 				</script>
-			</html>																																																																																																	
+			</html>																																																																																																							
