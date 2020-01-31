@@ -24,7 +24,7 @@
 							</center>
 						</div>
 						<div class="col-sm-2">
-							
+							<img src="images/SC_logo.jpeg" class="img-fluid img-thumbnail">
 						</div>
 					</div>
 				</div>
